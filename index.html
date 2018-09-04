@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+  <script type="text/javascript" src="./src/vue.min.js"></script>
+  <link rel = "stylesheet" type = "text/css" href = "./src/semantic.min.css" />
+  <link rel = "stylesheet" type = "text/css" href = "./src/style.css" />  
+  <title>Slay Dat Monster</title>
+</head>
+<body>
+  <div id="app">
+      <div class="ui fluid container" style="padding: 10px;">
+        <div class="ui grid">
+          <div class="row">
+            <div class="ten wide column">
+                <div class="ui segment">
+                  <div class="row" style="display: flex; justify-content: flex-end">
+                    <h1>Monster</h1>
+                  </div>
+                  <div class="row" 
+                      style="display: flex; justify-content: flex-end; padding-bottom: 100px;">
+                    <div class="column healthbar">
+                      <div class="healthbar" 
+                        style="background-color: green; width: 80%;">80</div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <h1>Player</h1>
+                  </div>
+                  <div class="row">
+                  <div class="column healthbar">
+                  <div class="healthbar" 
+                    style="background-color: green; width: 80%;">80</div>
+                </div>
+              </div>
+                </div>
+            </div>
+            <div class="six wide column">
+                <div class="row">
+                    <button class="ui green button massive">Start New Game</button>
+                </div>
+                <div class="row" style="padding-top: 20px;">
+                    <div class="ui grid">
+                        <div class="eight wide column">
+                            <button class="ui red button huge">Attack</button>
+                        </div>
+                        <div class="eight wide column">
+                            <button class="ui orange button huge">Special</button>
+                        </div>
+                        <div class="eight wide column">
+                            <button class="ui blue button huge">Heal</button>
+                        </div>
+                        <div class="eight wide column">
+                            <button class="ui yellow button huge">Give Up</button>
+                        </div>
+                      </div>
+                </div>
+            </div>
+          </div>
+          <div class="row log">
+            <div class="column">
+                <div class="ui segment">
+                    <ul>
+                      <li></li>
+                    </ul>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <script type="text/javascript" src="./app.js"></script>
+</body>
+</html>
