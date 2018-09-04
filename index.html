@@ -16,50 +16,69 @@
                     <h1>Monster</h1>
                   </div>
                   <div class="row" 
-                      style="display: flex; justify-content: flex-end; padding-bottom: 100px;">
+                      style="display: flex; justify-content: flex-end; padding-bottom: 50px;">
                     <div class="column healthbar">
                       <div class="healthbar" 
-                        style="background-color: green; width: 80%;">80</div>
+                        style="background-color: green; width: 80%;"
+                        :style="{width: `${monsterHealth}%`}">
+                      {{monsterHealth}}</div>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row" style="text-align: center;">
+                    <h1>{{gameResult}}</h1>
+                  </div>
+                  <div class="row" style="padding-top: 50px;">
                       <h1>Player</h1>
                   </div>
                   <div class="row">
                   <div class="column healthbar">
                   <div class="healthbar" 
-                    style="background-color: green; width: 80%;">80</div>
+                    style="background-color: green; width: 80%;"
+                    :style="{width: `${playerHealth}%`}">
+                  {{playerHealth}}
+                  </div>
                 </div>
               </div>
                 </div>
             </div>
             <div class="six wide column">
-                <div class="row">
-                    <button class="ui green button massive">Start New Game</button>
+                <div class="row" v-if="!isGameRunning">
+                    <button class="ui green button massive" 
+                        v-if="gameResult === ''"
+                        @click="startNewGame">
+                      Start New Game
+                    </button>
+                    <button class="ui green button massive" 
+                        v-else
+                        @click="resetGame">
+                        Reset Game
+                      </button>
                 </div>
-                <div class="row" style="padding-top: 20px;">
+                <div class="row" v-else style="padding-top: 20px;">
                     <div class="ui grid">
                         <div class="eight wide column">
-                            <button class="ui red button huge">Attack</button>
+                            <button class="ui red button huge" @click="battle()">Attack</button>
                         </div>
                         <div class="eight wide column">
-                            <button class="ui orange button huge">Special</button>
+                            <button class="ui orange button huge" @click="battle(useSpecialAttack)">Special</button>
                         </div>
                         <div class="eight wide column">
-                            <button class="ui blue button huge">Heal</button>
+                            <button class="ui blue button huge" @click="healPlayer()">Heal</button>
                         </div>
                         <div class="eight wide column">
-                            <button class="ui yellow button huge">Give Up</button>
+                            <button class="ui yellow button huge" @click="runAway()">Run away</button>
                         </div>
                       </div>
                 </div>
             </div>
           </div>
           <div class="row log">
-            <div class="column">
+            <div class="column" :class="{'makeScrollable': battleLog.length > 9}">
                 <div class="ui segment">
-                    <ul>
-                      <li></li>
+                    <ul v-if="battleLog.length > 0" v-for="record in battleLog">
+                      <li :class="{'player-turn': record.isPlayer, 'monster-turn': !record.isPlayer}">
+                          {{record.value}}
+                      </li>
                     </ul>
                   </div>
             </div>

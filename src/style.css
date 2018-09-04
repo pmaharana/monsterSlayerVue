@@ -27,3 +27,8 @@
   color: red;
   background-color: #ffc0c1;
 }
+
+.makeScrollable {
+  overflow-y: scroll;
+  height: 400px;
+}
