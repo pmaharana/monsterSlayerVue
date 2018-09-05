@@ -1,3 +1,23 @@
+let customHealth = Vue.component('custom-health', {
+  props: ['health', 'isMonster'],
+  data: function() {
+    return {
+      styleObj: {display: 'flex', justifyContent: 'flex-end', paddingBottom: '50px'}
+    }
+  },
+  template: `
+  <div class="row" :style="[isMonster ? styleObj : {}]">
+  <div class="column healthbar">
+  <div class="healthbar" 
+    style="background-color: green; width: 80%;"
+    :style="{width: health + '%'}">
+  {{health}}
+  </div>
+</div>
+</div>
+  `
+});
+
 new Vue({
   el: '#app',
   data: {
@@ -18,6 +38,7 @@ new Vue({
       this.monsterHealth = 100;
       this.battleLog = [];
       this.isGameRunning = true;
+      this.gameResult = '';
     },
     getRandomInt: function(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -61,5 +82,8 @@ new Vue({
       this.playerHealth = this.playerHealth - damageDone < 0 ? 0 : this.playerHealth - damageDone;
       this.battleLog.push({isPlayer: false, value: `Monster attacks you for ${damageDone} !!`});
     }
+  },
+  components: {
+    'custom-health': customHealth
   }
 })
